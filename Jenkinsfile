@@ -4,6 +4,13 @@ pipeline {
     jdk 'jdk21'
     maven 'Maven'
   }
+  environment {
+    APP_NAME = "register-app-pipeline"
+    DOCKER_USER = "shahzaib125"
+    IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
+    IMAGE_TAG = "1.0.${BUILD_NUMBER}"
+  }
+
          stages{
            stage("Cleanup Workspace"){
              steps{
