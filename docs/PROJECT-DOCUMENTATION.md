@@ -61,7 +61,6 @@ The project uses two Jenkins pipelines and a separate GitOps repository.
 <img width="1914" height="1023" alt="running instances" src="https://github.com/user-attachments/assets/4d739883-45b9-40f0-bcba-cb15b0326520" />
 
 
-<img width="1920" height="1030" alt="Sonarqube" src="https://github.com/user-attachments/assets/d7f38864-4294-403f-a3a1-708fd2d73940" />
 
 The project uses separate EC2 instances for the required DevOps tools
 and administration tasks.
