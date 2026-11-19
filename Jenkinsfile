@@ -1,5 +1,8 @@
 pipeline {
   agent { label 'Jenkins-Agent' }
+  options {
+    disableConcurrentBuilds()
+  }
   tools {
     jdk 'jdk21'
     maven 'Maven'
@@ -9,6 +12,7 @@ pipeline {
     DOCKER_USER = "shahzaib125"
     IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
     IMAGE_TAG = "1.0.${BUILD_NUMBER}"
+    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
   }
 
          stages{
@@ -82,8 +86,24 @@ pipeline {
                }
              }
            }
-         
+           stage("Trigger CD Pipeline") {
+             steps {
+               script {
+                 withCredentials([string(credentialsId: 'JENKINS_API_TOKEN', variable: 'JENKINS_API_TOKEN')]) {
+                   sh """
+                   curl -v -k --user "shahzaib:${JENKINS_API_TOKEN}" \
+                    -X POST \
+                    -H 'cache-control: no-cache' \
+                    -H 'content-type: application/x-www-form-urlencoded' \
+                    --data 'IMG_TAG=${IMAGE_TAG}' \
+                    'http://ec2-54-144-32-106.compute-1.amazonaws.com:8080/job/gitops-register-app/buildWithParameters?token=gitops-token'
+                """
+            }
+        }
+    }
+}
 
+                   
            
          }       
 }
