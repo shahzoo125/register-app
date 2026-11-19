@@ -1,5 +1,8 @@
 pipeline {
   agent { label 'Jenkins-Agent' }
+  options {
+    disableConcurrentBuilds()
+  }
   tools {
     jdk 'jdk21'
     maven 'Maven'
