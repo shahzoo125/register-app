@@ -61,6 +61,8 @@ The project uses two Jenkins pipelines and a separate GitOps repository.
 <img width="1914" height="1023" alt="running instances" src="https://github.com/user-attachments/assets/4d739883-45b9-40f0-bcba-cb15b0326520" />
 
 
+<img width="1920" height="1030" alt="Sonarqube" src="https://github.com/user-attachments/assets/d7f38864-4294-403f-a3a1-708fd2d73940" />
+
 The project uses separate EC2 instances for the required DevOps tools
 and administration tasks.
 
@@ -73,6 +75,9 @@ and administration tasks.
   Amazon EKS         Hosts the Kubernetes application workloads
 
 ### Jenkins Master
+<img width="1900" height="1030" alt="pipeline-jobs" src="https://github.com/user-attachments/assets/af97787b-ffbb-49f8-bb4f-30378db20e86" />
+
+
 
 Jenkins was installed on an Ubuntu EC2 instance.
 
@@ -115,6 +120,8 @@ agent { label 'Jenkins-Agent' }
 ```
 
 ### SonarQube Server
+<img width="1920" height="1030" alt="Sonarqube" src="https://github.com/user-attachments/assets/4b52b12d-c0fc-4538-ac9a-4eb5c8633e1c" />
+
 
 SonarQube was installed on a separate EC2 instance. PostgreSQL was
 configured as its database.
@@ -150,6 +157,9 @@ http://<SONARQUBE_SERVER_PUBLIC_IP>:9000
 ```
 
 ## 5. Jenkins CI Pipeline
+<img width="1891" height="967" alt="jenkins-Ci" src="https://github.com/user-attachments/assets/fa01162e-efb3-40fd-9277-df791304aed5" />
+
+
 
 The CI pipeline is stored in the application repository in a
 `Jenkinsfile`. It runs on the Jenkins Agent.
@@ -214,6 +224,9 @@ mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 Jenkins waits for the Quality Gate result before continuing.
 
 ### Docker image
+<img width="1893" height="980" alt="dockerhub" src="https://github.com/user-attachments/assets/bb7e1ef6-6e65-41e5-b854-67e95538a2e1" />
+
+
 
 The image is built and pushed to Docker Hub using the project image
 name:
@@ -241,6 +254,10 @@ After the scan, the pipeline removes the versioned and `latest` image
 tags from the Jenkins Agent to clean up local Docker storage.
 
 ### Triggering the CD pipeline
+
+<img width="1872" height="962" alt="gitops-register CD" src="https://github.com/user-attachments/assets/b53a05c9-e5b0-427c-8e30-941d80c0cd17" />
+
+
 
 After the CI stages complete, Jenkins triggers the GitOps CD job and
 passes the newly created image tag as the `IMG_TAG` build parameter.
@@ -304,6 +321,7 @@ kubectl get nodes
 kubectl get pods -A
 ```
 
+
 ## 8. Argo CD Setup
 
 Argo CD was installed in the EKS cluster to implement GitOps-based
@@ -323,6 +341,9 @@ Main setup tasks:
 
 Argo CD continuously monitors the configured Git repository and
 synchronizes the desired Kubernetes state with the cluster.
+
+
+
 
 ## 9. Jenkins CD Pipeline and GitOps Workflow
 
@@ -355,6 +376,12 @@ http://<LOADBALANCER_DNS>:8080/webapp/
 
 The Tomcat default page may appear at the root path `/`. The application
 itself is available under `/webapp/`.
+
+<img width="1920" height="1080" alt="Screenshot (59)" src="https://github.com/user-attachments/assets/75b66e4a-88d4-4032-83f9-48f9dde36581" />
+
+
+
+
 
 ## 11. End-to-End Deployment Flow
 
@@ -404,7 +431,7 @@ image paths below to match the actual filenames.
   ----------------------------------------------------------------------------
   Screenshot                               What it demonstrates
   ---------------------------------------- -----------------------------------
-  `screenshots/aws-infrastructure.png`     AWS EC2 infrastructure
+  `<img width="1914" height="1023" alt="running instances" src="https://github.com/user-attachments/assets/604d7f93-b4d8-465b-8b6c-e736a9712f05" />`  AWS EC2 infrastructure
 
   `screenshots/jenkins-ci-success.png`     Successful Jenkins CI pipeline
 
