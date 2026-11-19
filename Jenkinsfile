@@ -9,6 +9,7 @@ pipeline {
     DOCKER_USER = "shahzaib125"
     IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
     IMAGE_TAG = "1.0.${BUILD_NUMBER}"
+    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
   }
 
          stages{
