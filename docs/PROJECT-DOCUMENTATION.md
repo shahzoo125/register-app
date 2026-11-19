@@ -58,6 +58,8 @@ The project uses two Jenkins pipelines and a separate GitOps repository.
     service.
 
 ## 4. AWS Infrastructure
+<img width="1920" height="1080" alt="Screenshot (55)" src="https://github.com/user-attachments/assets/b9a976b6-b81d-4ae8-a826-86a6f3695ac1" />
+
 
 The project uses separate EC2 instances for the required DevOps tools
 and administration tasks.
