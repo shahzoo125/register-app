@@ -1,5 +1,6 @@
-![Uploading Register App CI_CD GitOps Architecture.png…]()
 # Register App --- DevOps CI/CD & GitOps Project
+
+![Uploading Register App CI_CD GitOps Architecture.png…]()
 
 ## 1. Project Overview
 
