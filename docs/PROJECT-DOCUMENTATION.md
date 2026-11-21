@@ -57,6 +57,7 @@ The project uses two Jenkins pipelines and a separate GitOps repository.
 10. The application is exposed through a Kubernetes LoadBalancer
     service.
 
+
 ## 4. AWS Infrastructure
 <img width="1914" height="1023" alt="running instances" src="https://github.com/user-attachments/assets/4d739883-45b9-40f0-bcba-cb15b0326520" />
 
@@ -72,6 +73,7 @@ and administration tasks.
   SonarQube Server   Performs code quality analysis
   Bootstrap Server   Used to configure and manage the EKS cluster
   Amazon EKS         Hosts the Kubernetes application workloads
+
 
 ### Jenkins Master
 <img width="1900" height="1030" alt="pipeline-jobs" src="https://github.com/user-attachments/assets/af97787b-ffbb-49f8-bb4f-30378db20e86" />
@@ -97,6 +99,7 @@ Open Jenkins at:
 http://<JENKINS_SERVER_PUBLIC_IP>:8080
 ```
 
+
 ### Jenkins Agent
 
 A separate Ubuntu EC2 instance was configured as the Jenkins Agent.
@@ -117,6 +120,7 @@ The pipeline uses the agent label:
 ``` groovy
 agent { label 'Jenkins-Agent' }
 ```
+
 
 ### SonarQube Server
 <img width="1920" height="1030" alt="Sonarqube" src="https://github.com/user-attachments/assets/4b52b12d-c0fc-4538-ac9a-4eb5c8633e1c" />
@@ -154,6 +158,7 @@ SonarQube URL:
 ``` text
 http://<SONARQUBE_SERVER_PUBLIC_IP>:9000
 ```
+
 
 ## 5. Jenkins CI Pipeline
 <img width="1891" height="967" alt="jenkins-Ci" src="https://github.com/user-attachments/assets/fa01162e-efb3-40fd-9277-df791304aed5" />
@@ -198,6 +203,7 @@ The CI pipeline is stored in the application repository in a
                                       passes the image tag
   -----------------------------------------------------------------------
 
+
 ### Application build
 
 Maven is used to build and package the application:
@@ -222,10 +228,10 @@ mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
 Jenkins waits for the Quality Gate result before continuing.
 
+
+
 ### Docker image
 <img width="1893" height="980" alt="dockerhub" src="https://github.com/user-attachments/assets/bb7e1ef6-6e65-41e5-b854-67e95538a2e1" />
-
-
 
 The image is built and pushed to Docker Hub using the project image
 name:
@@ -291,7 +297,11 @@ Kubernetes:
 An IAM role was attached to the Bootstrap server to provide the required
 AWS permissions.
 
+
+
 ### EKS cluster creation
+<img width="1920" height="1080" alt="Kubernetess" src="https://github.com/user-attachments/assets/75385b3d-933f-4813-a2c3-a62de1958a36" />
+
 
 The cluster was created in `us-east-1` using `eksctl` with a managed
 node group.
@@ -321,7 +331,9 @@ kubectl get pods -A
 ```
 
 
+
 ## 8. Argo CD Setup
+<img width="1920" height="1037" alt="argocd" src="https://github.com/user-attachments/assets/16d7d0d8-b7fc-43ff-8386-d15165a76569" />
 
 Argo CD was installed in the EKS cluster to implement GitOps-based
 continuous delivery.
@@ -422,49 +434,6 @@ Kubernetes LoadBalancer
 Web Application
 ```
 
-## 12. Screenshots
-
-Add your project screenshots in a `screenshots` folder and update the
-image paths below to match the actual filenames.
-
-  ----------------------------------------------------------------------------
-  Screenshot                               What it demonstrates
-  ---------------------------------------- -----------------------------------
-  `<img width="1914" height="1023" alt="running instances" src="https://github.com/user-attachments/assets/604d7f93-b4d8-465b-8b6c-e736a9712f05" />`  AWS EC2 infrastructure
-
-  `screenshots/jenkins-ci-success.png`     Successful Jenkins CI pipeline
-
-  `screenshots/sonarqube-analysis.png`     SonarQube project analysis
-
-  `screenshots/dockerhub-image.png`        Published Docker image
-
-  `screenshots/eks-nodes.png`              EKS worker nodes
-
-  `screenshots/kubernetes-resources.png`   Kubernetes pods and resources
-
-  `screenshots/argocd-application.png`     Argo CD application synchronization
-
-  `screenshots/jenkins-cd-success.png`     Jenkins CD pipeline
-
-  `screenshots/application-ui.png`         Deployed application interface
-  ----------------------------------------------------------------------------
-
-Example Markdown to display a screenshot:
-
-``` markdown
-![Successful Jenkins CI Pipeline](screenshots/jenkins-ci-success.png)
-```
-
-## 13. Security Notes
-
--   Do not commit passwords, personal access tokens, API tokens, SSH
-    private keys, or AWS credentials to GitHub.
--   Store Jenkins credentials in the Jenkins Credentials Manager.
--   Use IAM roles for AWS access from EC2 instances instead of storing
-    long-term AWS access keys on the server.
--   Keep secret values out of screenshots and project documentation.
--   Replace example placeholders with non-sensitive information only
-    when necessary.
 
 ## 14. Project Outcome
 
