@@ -1,6 +1,6 @@
 # Register App --- DevOps CI/CD & GitOps Project
 
-![Uploading Register App CI_CD GitOps Architecture.png…]()
+<img width="1536" height="774" alt="Register App " src="https://github.com/user-attachments/assets/b529d9ad-72e1-48ef-b3c1-3ee80e399f10" />
 
 ## 1. Project Overview
 
